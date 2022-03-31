@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="CSGOHUD.Controls.PlayerStatisticsLeft"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSGOHUD.Controls"
+             mc:Ignorable="d" 
+             Name="Control_PlayerStatisticsLeft"
+             Width="450"
+             Height="50"
+             FontSize="15"
+             FontFamily="Arial Black"
+             d:DesignHeight="50" 
+             d:DesignWidth="450">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="Image"
+              Height="50"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Image Source="C:\\Users\biglj\Pictures\images.png"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">                
+            </Image>
+            <TextBlock x:Name="TextBlock_PlayerNumber"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Foreground="White"
+                       Text="1">
+            </TextBlock>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Grid_TopPanel"
+                  Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.ColumnSpan="2"
+                           HorizontalAlignment="Stretch">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                            <GradientStop Color="#FF5F603E" Offset="0"/>
+                            <GradientStop Color="#FFE7B234" Offset="0.6"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="LightGray"                           
+                           Text="100">                    
+                </TextBlock>
+                <TextBlock Grid.Column="1"
+                           Margin="2"
+                           VerticalAlignment="Center"
+                           Foreground="WhiteSmoke"
+                           Text="Ongin">                    
+                </TextBlock>
+            </Grid>
+
+            <Grid x:Name="Grid_BottomPanel"
+                  Grid.Row="1"
+                  Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="C:\\Users\biglj\Pictures\images.png"/>
+                
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                           Margin="2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Foreground="DarkRed"
+                           Text="$20000">
+                    </TextBlock>
+
+                    <Image x:Name="Image_Defuzes"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+
+                </Grid>
+
+                <Image x:Name="Image_Granade1"
+                       Grid.Column="2"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+                <Image x:Name="Image_Granade2"
+                       Grid.Column="3"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+                <Image x:Name="Image_Granade3"
+                       Grid.Column="4"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+                <Image x:Name="Image_Granade4"
+                       Grid.Column="5"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+                <Image x:Name="Image_Weapon2"
+                       Grid.Column="6"
+                       Source="C:\\Users\biglj\Pictures\images.png"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="Grid_Weapon3"
+              Grid.Column="2">
+            <Image x:Name="Image_Weapon3" 
+                   Width="auto" 
+                   Height="50"
+                   Source="C:\\Users\biglj\Pictures\images.png"/>
+        </Grid>
+    </Grid>
+</UserControl>
