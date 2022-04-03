@@ -21,34 +21,8 @@ namespace CSGOHUD.Controls
     /// </summary>
     public partial class PlayerStatisticsLeft : UserControl
     {
-        public static readonly DependencyProperty ImageWidthProperty =
-            DependencyProperty.Register("ImageWidth", typeof(double), typeof(PlayerStatisticsLeft), new UIPropertyMetadata((double)GridLength.Auto.Value));
-        
-        public static readonly DependencyProperty PlayerAliveProperty =
-            DependencyProperty.Register("IsPlayerAlive", typeof(bool), typeof(PlayerStatisticsLeft), new UIPropertyMetadata(false));
-
-        [TypeConverter(typeof(LengthConverter))]
-        public double ImageWidth
-        {
-            get
-            {
-                return (double)GetValue(ImageWidthProperty);
-            }
-            set { SetValue(ImageWidthProperty, value); }
-        }
-
-        public bool IsPlayerAlive
-        {
-            get
-            {
-                return (bool)GetValue(PlayerAliveProperty);
-            }
-            set { SetValue(PlayerAliveProperty, value); }
-        }
-
         public PlayerStatisticsLeft()
         {
-            DataContext = this;
             InitializeComponent();
         }
     }

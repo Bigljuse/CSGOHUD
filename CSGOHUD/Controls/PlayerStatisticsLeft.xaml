@@ -6,32 +6,33 @@
              xmlns:local="clr-namespace:CSGOHUD.Controls"
              mc:Ignorable="d" 
              Name="Control_PlayerStatisticsLeft"
-             Width="450"
-             Height="50"
+             DataContext=""
              FontSize="15"
              FontFamily="Arial Black"
-             d:DesignHeight="50" 
-             d:DesignWidth="450">
+             Width="500"
+             MinWidth="400"
+             Height="60"
+             MinHeight="60">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto" MinWidth="50"/>
+            <ColumnDefinition Width="2*" MinWidth="200"/>
+            <ColumnDefinition Width="*" MinWidth="100"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="Image"
-              Height="50"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
-            <Image Source="C:\\Users\biglj\Pictures\images.png"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center">                
+        <Grid Height="{Binding ElementName=Control_PlayerStatisticsLeft, Path=Height}"
+              Width="{Binding ElementName=Control_PlayerStatisticsLeft, Path=Height}">
+            <Image Name="Image_PlayerImage"
+                   Stretch="Fill"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=PlayerImageSource}">
             </Image>
             <TextBlock x:Name="TextBlock_PlayerNumber"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Foreground="White"
-                       Text="1">
+                       Text="{Binding ElementName=Control_PlayerStatisticsLeft, Path=PlayerNumber}">
             </TextBlock>
         </Grid>
 
@@ -41,15 +42,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="Grid_TopPanel"
-                  Grid.Row="0">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="7.4*"/>
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Grid.ColumnSpan="2"
-                           HorizontalAlignment="Stretch">
+                <Rectangle Grid.ColumnSpan="2">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                             <GradientStop Color="#FF5F603E" Offset="0"/>
@@ -58,24 +57,25 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <TextBlock VerticalAlignment="Center"
+                <TextBlock Name="TextBlock_Health"
+                           VerticalAlignment="Center"
                            HorizontalAlignment="Center"
-                           Foreground="LightGray"                           
-                           Text="100">                    
+                           Foreground="LightGray"
+                           Text="{Binding ElementName=Control_PlayerStatisticsLeft, Path=Health}">
                 </TextBlock>
-                <TextBlock Grid.Column="1"
+                <TextBlock Name="TextBlock_NickName"
+                           Grid.Column="1"
                            Margin="2"
                            VerticalAlignment="Center"
                            Foreground="WhiteSmoke"
-                           Text="Ongin">                    
+                           Text="{Binding ElementName=Control_PlayerStatisticsLeft, Path=NickName}">
                 </TextBlock>
             </Grid>
 
-            <Grid x:Name="Grid_BottomPanel"
-                  Grid.Row="1"
+            <Grid Grid.Row="1"
                   Background="Black">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -84,54 +84,55 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Source="C:\\Users\biglj\Pictures\images.png"/>
-                
+                <Image Name="Image_Helmet"
+                       Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=HelmetImageSource}">                    
+                </Image>
+
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                           Margin="2"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Foreground="DarkRed"
-                           Text="$20000">
+                    <TextBlock Name="TextBlock_Money"
+                               Grid.Column="0"
+                               Margin="2"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Foreground="DarkRed"
+                               Text="{Binding ElementName=Control_PlayerStatisticsLeft, Path=Money, StringFormat='${0}'}">
                     </TextBlock>
 
                     <Image x:Name="Image_Defuzes"
-                       Grid.Column="1"
-                       HorizontalAlignment="Left"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=DefuzesImageSource}">
+                    </Image>
 
                 </Grid>
 
-                <Image x:Name="Image_Granade1"
+                <Image x:Name="Image_Impact"
                        Grid.Column="2"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
-                <Image x:Name="Image_Granade2"
+                       Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=ImpactImageSource}"/>
+                <Image x:Name="Image_Smoke"
                        Grid.Column="3"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
-                <Image x:Name="Image_Granade3"
+                       Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=SmokeImageSource}"/>
+                <Image x:Name="Image_Flash"
                        Grid.Column="4"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
-                <Image x:Name="Image_Granade4"
-                       Grid.Column="5"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
-                <Image x:Name="Image_Weapon2"
+                       Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=FlashImageSource}"/>
+                <Image x:Name="Image_Pistol"
                        Grid.Column="6"
-                       Source="C:\\Users\biglj\Pictures\images.png"/>
-
+                       Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=PistolImageSource}"/>
             </Grid>
         </Grid>
 
-        <Grid x:Name="Grid_Weapon3"
+        <Grid Height="{Binding ElementName=Control_PlayerStatisticsLeft, Path=Height}"
               Grid.Column="2">
-            <Image x:Name="Image_Weapon3" 
-                   Width="auto" 
-                   Height="50"
-                   Source="C:\\Users\biglj\Pictures\images.png"/>
+            <Image x:Name="Image_MainGun"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Source="{Binding ElementName=Control_PlayerStatisticsLeft, Path=MainGunImageSource}">
+            </Image>
         </Grid>
     </Grid>
 </UserControl>
