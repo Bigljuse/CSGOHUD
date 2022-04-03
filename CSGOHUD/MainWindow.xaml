@@ -24,19 +24,30 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player1"
+                                          PlayerImageSource="C:\\Users\biglj\Pictures\images.png"
+                                          PlayerNumber="1"
+                                          Money="1000"
                                           Grid.Row="0">
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player2"
+                                          PlayerNumber="2"
                                           Grid.Row="1">
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player3"
+                                          PlayerNumber="3"
                                           Grid.Row="2">                
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player4"
+                                          PlayerNumber="4"
                                           Grid.Row="3">                
+            </control:PlayerStatisticsLeft>
+            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player5"
+                                          PlayerNumber="5"
+                                          Grid.Row="4">                
             </control:PlayerStatisticsLeft>
         </Grid>
 
@@ -48,19 +59,28 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player1"
+                                           PlayerNumber="6"
                                            Grid.Row="0">
             </control:PlayerStatisticsRight>
             <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player2"
+                                           PlayerNumber="7"
                                            Grid.Row="1">
             </control:PlayerStatisticsRight>
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player3"
+            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player3"                                           
+                                           PlayerNumber="8"
                                            Grid.Row="2">
             </control:PlayerStatisticsRight>
             <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player4"
+                                           PlayerNumber="9"
                                            Grid.Row="3">
+            </control:PlayerStatisticsRight>
+            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player5"
+                                           PlayerNumber="10"
+                                           Grid.Row="4">
             </control:PlayerStatisticsRight>
         </Grid>
 
@@ -214,13 +234,13 @@
             </Grid>
         </Grid>        
         
-        <ScrollViewer>
+        <!--<ScrollViewer>
             <TextBlock Name="TextBlock_Text"
                        Background="White"
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   TextWrapping="Wrap"/>
-        </ScrollViewer>     
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       TextWrapping="Wrap"/>
+        </ScrollViewer>-->     
         
     </Grid>
 </Window>

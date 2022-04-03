@@ -47,7 +47,7 @@ namespace CSGOHUD
 
         private void ChangedText(string text)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { TextBlock_Text.Text = text; }));
+           // Application.Current.Dispatcher.Invoke(new Action(() => { TextBlock_Text.Text = text; }));
         }
     }
 }
