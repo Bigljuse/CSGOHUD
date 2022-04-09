@@ -117,19 +117,26 @@ namespace CSGOHUD
 
         private PlayerModel ProcessPlayer(JObject jPlayer)
         {
-            JObject jState = jPlayer["state"] as JObject;
-            JObject jMatch_stats = jPlayer["match_stats"] as JObject;
-            JObject jWeapons = jPlayer["weapons"] as JObject;
+            JObject? jState = jPlayer["state"] as JObject;
+            JObject? jMatch_stats = jPlayer["match_stats"] as JObject;
+            JObject? jWeapons = jPlayer["weapons"] as JObject;
 
             PlayerModel player = jPlayer.ConvertToType(new PlayerModel());
-            player.State = jState.ConvertToType(new StateModel());
-            player.Match_Stats = jMatch_stats.ConvertToType(new Match_StatsModel());
+            player.State = jState?.ConvertToType(new StateModel()) ?? new StateModel();
+            player.Match_Stats = jMatch_stats?.ConvertToType(new Match_StatsModel()) ?? new Match_StatsModel();
 
             List<WeaponModel> weapons = new List<WeaponModel>();
+
+            if (jWeapons == null || jWeapons.Count == 0)
+                return player;
 
             for (int weaponNumber = 0; weaponNumber <= jWeapons.Count - 1; weaponNumber++)
             {
                 JObject jWeapon = jWeapons[$"weapon_{weaponNumber}"] as JObject;
+
+                if (jWeapon == null)
+                    return player;
+
                 WeaponModel weapon = jWeapon.ToObject<WeaponModel>();
                 weapons.Add(weapon);
             }
