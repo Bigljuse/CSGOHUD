@@ -16,9 +16,13 @@
         WindowState="Maximized"
         Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
+        <control:TeamStatistics x:Name="TeamStatistics_Menu"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"/>
+
         <Grid HorizontalAlignment="Left"
               VerticalAlignment="Bottom"
-              Margin="0,0,0,250">
+              Margin="0,0,0,165">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -28,7 +32,6 @@
             </Grid.RowDefinitions>
 
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player1"
-                                          PlayerImageSource="C:\\Users\biglj\Pictures\images.png"
                                           PlayerNumber="1"
                                           Money="1000"
                                           Grid.Row="0">
@@ -39,21 +42,21 @@
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player3"
                                           PlayerNumber="3"
-                                          Grid.Row="2">                
+                                          Grid.Row="2">
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player4"
                                           PlayerNumber="4"
-                                          Grid.Row="3">                
+                                          Grid.Row="3">
             </control:PlayerStatisticsLeft>
             <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player5"
                                           PlayerNumber="5"
-                                          Grid.Row="4">                
+                                          Grid.Row="4">
             </control:PlayerStatisticsLeft>
         </Grid>
 
         <Grid HorizontalAlignment="Right"
               VerticalAlignment="Bottom"
-              Margin="0,0,0,250">
+              Margin="0,0,0,165">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -79,168 +82,14 @@
                                            Grid.Row="3">
             </control:PlayerStatisticsRight>
             <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player5"
-                                           PlayerNumber="10"
+                                           PlayerNumber="0"
                                            Grid.Row="4">
             </control:PlayerStatisticsRight>
         </Grid>
 
-        <Grid HorizontalAlignment="Center"
-              VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid x:Name="Grid_TopLeft"
-                  Grid.Column="0"
-                  Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock x:Name="TextBlock_T_TeamName"
-                           Foreground="#FFBFAA4D"
-                           Width="400"
-                           Margin="0,0,10,0"
-                           FontSize="30"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Right"
-                           Text="T team name">
-                </TextBlock>
-
-                <Image x:Name="Image_T"
-                       Margin="5,0,5,0"
-                       Grid.Column="1" 
-                       Width="70">                    
-                </Image>
-
-                <Rectangle Grid.Column="2"
-                           Fill="#FF665C2F" 
-                           Width="70"
-                           Height="70">
-                </Rectangle>
-                <TextBlock x:Name="TextBlock_T_RoundsWon"
-                           Foreground="White"
-                           Text="0"
-                           Grid.Column="2"
-                           FontSize="50"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center">                    
-                </TextBlock>
-            </Grid>
-
-            <Grid x:Name="Grid_Timer"
-                  Grid.Column="1"
-                  Grid.Row="0"
-                  Background="Black" 
-                  Width="130">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock x:Name="TextBlock_Timer"
-                           FontFamily="Arial"
-                           FontSize="25"
-                           Foreground="White"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Center"
-                           Width="130"
-                           Text="0:00">
-                </TextBlock>
-
-
-                <TextBlock x:Name="TextBlock_RoundCounter"   
-                           Grid.Row="1"
-                           FontFamily="Arial"
-                           FontSize="16"
-                           Foreground="White"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Center"
-                           Width="130"
-                           Text="Round 0/30">
-                </TextBlock>
-            </Grid>
-
-            <Grid x:Name="Grid_TopRight"
-                  Grid.Column="2"
-                  Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <Rectangle Fill="#FF33506D" 
-                           Width="70"
-                           Height="70">
-                </Rectangle>
-                <TextBlock x:Name="TextBlock_CT_RoundsWon"
-                           Foreground="White"
-                           Text="0"
-                           FontSize="50"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center">                    
-                </TextBlock>
-                <TextBlock x:Name="TextBlock_CT_TeamName"
-                           Foreground="#FF508BC7"
-                           Width="400"
-                           Grid.Column="2"
-                           Margin="0,0,10,0"
-                           FontSize="30"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Left"
-                           Text="CT team name">
-                </TextBlock>
-
-                <Image x:Name="Image_CT"
-                       Margin="5,0,5,0"
-                       Grid.Column="1" 
-                       Width="70">
-                </Image>
-            </Grid>
-
-            <Grid Grid.Row="1"
-                  Grid.ColumnSpan="3"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock x:Name="TextBlock_BestOfNSeries"
-                           Grid.Column="1"
-                           FontFamily="Arial"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Foreground="White"
-                           Text="Best of N Series"
-                           FontSize="20">                    
-                </TextBlock>
-            </Grid>
-        </Grid>        
-        
-        <!--<ScrollViewer>
-            <TextBlock Name="TextBlock_Text"
-                       Background="White"
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       TextWrapping="Wrap"/>
-        </ScrollViewer>-->     
-        
+        <control:PlayerViewer x:Name="PlayerViewer"
+                              HorizontalAlignment="Center" 
+                              VerticalAlignment="Bottom"
+                              Margin="0,0,0,165"/>
     </Grid>
 </Window>
