@@ -1,6 +1,6 @@
-﻿namespace CSGOHUD.Models.Player
+﻿namespace CSGOHUD.Models.Player.Components
 {
-    public sealed class Weapon
+    public sealed class WeaponModel
     {
         public string Name { get; set; } = string.Empty;
 
@@ -8,7 +8,7 @@
 
         public string Type { get; set; } = string.Empty;
 
-        public int Ammo_Clip  { get; set;}= 0;
+        public int Ammo_Clip { get; set; } = 0;
 
         public int Ammo_Clip_max { get; set; } = 0;
 

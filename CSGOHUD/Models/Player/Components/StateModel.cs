@@ -1,4 +1,4 @@
-﻿namespace CSGOHUD.Models.Player
+﻿namespace CSGOHUD.Models.Player.Components
 {
     public sealed class StateModel
     {

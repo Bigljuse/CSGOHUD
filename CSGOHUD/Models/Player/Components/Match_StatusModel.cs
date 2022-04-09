@@ -1,6 +1,6 @@
-﻿namespace CSGOHUD.Models.Player
+﻿namespace CSGOHUD.Models.Player.Components
 {
-    public sealed class Match_StatusModel
+    public sealed class Match_StatsModel
     {
         public int Kills { get; set; } = 0;
 
@@ -10,6 +10,6 @@
 
         public int Mvps { get; set; } = 0;
 
-        public int Score { get; set; } = 1;
+        public int Score { get; set; } = 0;
     }
 }
