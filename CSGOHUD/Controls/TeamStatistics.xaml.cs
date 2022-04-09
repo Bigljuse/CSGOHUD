@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,11 +16,11 @@ using System.Windows.Shapes;
 namespace CSGOHUD.Controls
 {
     /// <summary>
-    /// Interaction logic for PlayerStatistics.xaml
+    /// Interaction logic for GameStatistics.xaml
     /// </summary>
-    public partial class PlayerStatisticsLeft : UserControl
+    public partial class TeamStatistics : UserControl
     {
-        public PlayerStatisticsLeft()
+        public TeamStatistics()
         {
             DataContext = this;
             InitializeComponent();

@@ -6,16 +6,11 @@ namespace CSGOHUD.Controls
     public partial class PlayerStatisticsRight
     {
         public static readonly DependencyProperty PlayerAliveProperty = DependencyProperty.Register("IsPlayerAlive", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
-        public static readonly DependencyProperty PlayerImageSourceProperty = DependencyProperty.Register("PlayerImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty MainGunProperty = DependencyProperty.Register("MainGunImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty DefuzesImageSourceProperty = DependencyProperty.Register("DefuzesImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty PistolImageSourceProperty = DependencyProperty.Register("PistolImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty SizeProperty = DependencyProperty.Register("Size", typeof(int), typeof(PlayerStatisticsRight), new UIPropertyMetadata(10));
-        public static readonly DependencyProperty PlayerNumberProperty = DependencyProperty.Register("PlayerNumber", typeof(int), typeof(PlayerStatisticsRight), new UIPropertyMetadata(1));
-        public static readonly DependencyProperty HealthProperty = DependencyProperty.Register("Health", typeof(int), typeof(PlayerStatisticsRight), new UIPropertyMetadata(0));
+        public static readonly DependencyProperty PlayerNumberProperty = DependencyProperty.Register("PlayerNumber", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata("1"));
+        public static readonly DependencyProperty HealthProperty = DependencyProperty.Register("Health", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata("0"));
         public static readonly DependencyProperty NickNameProperty = DependencyProperty.Register("NickName", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty KillsProperty = DependencyProperty.Register("Kills", typeof(int), typeof(PlayerStatisticsRight), new UIPropertyMetadata(0));
-        public static readonly DependencyProperty MoneyProperty = DependencyProperty.Register("Money", typeof(int), typeof(PlayerStatisticsRight), new UIPropertyMetadata(0));
+        public static readonly DependencyProperty KillsProperty = DependencyProperty.Register("Kills", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata("0"));
+        public static readonly DependencyProperty MoneyProperty = DependencyProperty.Register("Money", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata("0"));
         public static readonly DependencyProperty HasMainGunProperty = DependencyProperty.Register("HasMainGun", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
         public static readonly DependencyProperty HasPistolProperty = DependencyProperty.Register("HasPistol", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
         public static readonly DependencyProperty HasMolotovProperty = DependencyProperty.Register("HasMolotov", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
@@ -23,10 +18,14 @@ namespace CSGOHUD.Controls
         public static readonly DependencyProperty HasHelmetProperty = DependencyProperty.Register("HasHelmet", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
         public static readonly DependencyProperty HasDefusesProperty = DependencyProperty.Register("HasDefuses", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
         public static readonly DependencyProperty HasSmokeProperty = DependencyProperty.Register("HasSmoke", typeof(bool), typeof(PlayerStatisticsRight), new UIPropertyMetadata(false));
-        public static readonly DependencyProperty HelmetImageSourceProperty = DependencyProperty.Register("HelmetImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty FlashImageSourceProperty = DependencyProperty.Register("FlashImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty SmokeImageSourceProperty = DependencyProperty.Register("SmokeImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
-        public static readonly DependencyProperty ImpactImageSourceProperty = DependencyProperty.Register("ImpactImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata(string.Empty));
+        public static readonly DependencyProperty HelmetImageSourceProperty = DependencyProperty.Register("HelmetImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty FlashImageSourceProperty = DependencyProperty.Register("FlashImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty SmokeImageSourceProperty = DependencyProperty.Register("SmokeImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty ImpactImageSourceProperty = DependencyProperty.Register("ImpactImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty PlayerImageSourceProperty = DependencyProperty.Register("PlayerImageSource", typeof(string), typeof(PlayerStatisticsRight), new UIPropertyMetadata("../Images/CT.jpg"));
+        public static readonly DependencyProperty MainGunProperty = DependencyProperty.Register("MainGunImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty DefuzesImageSourceProperty = DependencyProperty.Register("DefuzesImageSource", typeof(string), typeof(PlayerStatisticsRight));
+        public static readonly DependencyProperty PistolImageSourceProperty = DependencyProperty.Register("PistolImageSource", typeof(string), typeof(PlayerStatisticsRight));
 
         public bool IsPlayerAlive
         {
@@ -126,13 +125,13 @@ namespace CSGOHUD.Controls
             get { return (bool)GetValue(HasMainGunProperty); }
             set { SetValue(HasMainGunProperty, value); }
         }
-        public int Money
+        public string Money
         {
-            get { return (int)GetValue(MoneyProperty); }
+            get { return (string)GetValue(MoneyProperty); }
             set
             {
                 SetValue(MoneyProperty, value);
-                if (value >= 1000)
+                if (int.Parse(value) >= 1000)
                 {
                     TextBlock_Money.Foreground = new SolidColorBrush(Colors.LightGray);
                     return;
@@ -140,9 +139,9 @@ namespace CSGOHUD.Controls
                 TextBlock_Money.Foreground = new SolidColorBrush(Colors.DarkRed);
             }
         }
-        public int Kills
+        public string Kills
         {
-            get { return (int)GetValue(KillsProperty); }
+            get { return (string)GetValue(KillsProperty); }
             set { SetValue(KillsProperty, value); }
         }
         public string NickName
@@ -150,20 +149,15 @@ namespace CSGOHUD.Controls
             get { return (string)GetValue(NickNameProperty); }
             set { SetValue(NickNameProperty, value); }
         }
-        public int Health
+        public string Health
         {
-            get { return (int)GetValue(HealthProperty); }
+            get { return (string)GetValue(HealthProperty); }
             set { SetValue(HealthProperty, value); }
         }
-        public int PlayerNumber
+        public string PlayerNumber
         {
-            get { return (int)GetValue(HealthProperty); }
+            get { return (string)GetValue(HealthProperty); }
             set { SetValue(HealthProperty, value); }
-        }
-        public int Size
-        {
-            get { return (int)GetValue(SizeProperty); }
-            set { SetValue(SizeProperty, value); }
         }
     }
 }

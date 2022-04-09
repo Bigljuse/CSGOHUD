@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:CSGOHUD.Controls"
              mc:Ignorable="d" 
              Name="Control_PlayerStatisticsRight"
-             DataContext=""
              FontSize="15"
              FontFamily="Arial Black"
              Width="500"
