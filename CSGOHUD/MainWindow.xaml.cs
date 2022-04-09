@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 
 using CSGOHUD.Controls;
 using CSGOHUD.Models;
+using CSGOHUD.Models.Enums;
+using CSGOHUD.Models.Player;
+using CSGOHUD.Models.Player.Components;
 
 namespace CSGOHUD
 {
@@ -33,21 +36,39 @@ namespace CSGOHUD
         {
             GameListener gameListener = new GameListener();
             gameListener.GameStateChanged += GameListener_GameStateChanged;
-            gameListener.TextChanged += ChangedText;
         }
 
         private void GameListener_GameStateChanged(GameStateModel gameState)
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                TextBlock_Timer.Text = gameState.Phase_Countdowns.Phase_Ends_In;
-                TextBlock_CT_TeamName.Text = gameState.Player.Name;
+                if (gameState.Map != null)
+                {
+                    TeamStatistics_Menu.T_RoundsWon = gameState.Map.Team_T.Score;
+                    TeamStatistics_Menu.CT_RoundsWon = gameState.Map.Team_CT.Score;
+                }
+
+                if (gameState.Player != null)
+                    SetPlayerViewer(gameState.Player);
             }));
         }
 
-        private void ChangedText(string text)
+        private void SetPlayerViewer(PlayerModel spectatedPlayer)
         {
-           // Application.Current.Dispatcher.Invoke(new Action(() => { TextBlock_Text.Text = text; }));
+
+            PlayerViewer.NickName = spectatedPlayer.Name;
+            PlayerViewer.Health = spectatedPlayer.State.Health.ToString();
+            PlayerViewer.Armor = spectatedPlayer.State.Armor.ToString();
+            PlayerViewer.Kills = spectatedPlayer.Match_Stats.Kills.ToString();
+            PlayerViewer.Deaths = spectatedPlayer.Match_Stats.Deaths.ToString();
+            PlayerViewer.Team = spectatedPlayer.Team.ToString() == "T" ? TeamEnum.T : TeamEnum.CT;
+
+            WeaponModel? activeWeapon = spectatedPlayer.Weapons.Find(weapon => weapon.State == WeaponState.active.ToString());
+            if (activeWeapon != null)
+            {
+                PlayerViewer.AmmoClip = activeWeapon.Ammo_Clip.ToString();
+                PlayerViewer.AmmoClipMax = activeWeapon.Ammo_Clip_max.ToString();
+            }
         }
     }
 }

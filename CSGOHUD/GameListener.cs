@@ -11,6 +11,7 @@ using CSGOHUD.Models.Map;
 using CSGOHUD.Models.Player;
 using System.Collections.Generic;
 using System.Reflection;
+using CSGOHUD.Models.Player.Components;
 
 namespace CSGOHUD
 {
@@ -19,14 +20,12 @@ namespace CSGOHUD
         private readonly AutoResetEvent _waitForConnection = new AutoResetEvent(false);
         private HttpListener _listener;
         private string _json = String.Empty;
+        private JObject _jString = new JObject();
         private GameStateModel _gamestate = new GameStateModel();
 
 
         public delegate void GameStateHandler(GameStateModel gameState);
         public event GameStateHandler GameStateChanged;
-
-        public delegate void TextHandler(string text);
-        public event TextHandler TextChanged;
 
         public GameListener()
         {
@@ -71,74 +70,94 @@ namespace CSGOHUD
 
         private void ProcessGameState()
         {
-            ProcessProvider();
-            _gamestate.Map = ProcessMap();
-            _gamestate.Round = ProcessRound();
-            _gamestate.Player = ProcessPlayer();
-            _gamestate.AllPlayers = ProcessAllplayers();
-            _gamestate.Phase_Countdowns = ProcessPreviously();
+            _jString = JObject.Parse(_json) as JObject;
+
+            if (_jString["provider"] != null)
+                _gamestate.Provider = ProcessProvider(_jString["provider"] as JObject);
+
+            if (_jString["map"] != null)
+                _gamestate.Map = ProcessMap(_jString["map"] as JObject);
+
+            if (_jString["round"] != null)
+                _gamestate.Round = ProcessRound(_jString["round"] as JObject);
+
+            if (_jString["player"] != null)
+                _gamestate.Player = ProcessPlayer(_jString["player"] as JObject);
+
+            //if (_jString["allplayers"] != null)
+            //    _gamestate.AllPlayers = ProcessAllplayers();
+
+            if (_jString["phase_countdowns"] != null)
+                _gamestate.Phase_Countdowns = ProcessPreviously(_jString["phase_countdowns"] as JObject);
 
             GameStateChanged?.Invoke(_gamestate);
-            TextChanged?.Invoke(_json);
             _waitForConnection.Set();
         }
 
-        private void ProcessProvider()
+        private ProviderModel ProcessProvider(JObject jProvider)
         {
-            JObject providerJObject = JObject.Parse(_json)["provider"] as JObject;
-            ProviderModel provider = providerJObject?.ToObject<ProviderModel>() ?? new ProviderModel();
-            
-            PropertyInfo[] provider_Properties = typeof(ProviderModel).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            return jProvider.ConvertToType(new ProviderModel());
+        }
 
-            foreach (PropertyInfo provider_Property in provider_Properties)
+        private MapModel ProcessMap(JObject jMap)
+        {
+            JObject jTeam_CT = jMap["team_ct"] as JObject;
+            JObject jTeam_T = jMap["team_t"] as JObject;
+            MapModel map = jMap.ConvertToType(new MapModel());
+            map.Team_CT = jTeam_CT.ConvertToType(new TeamModel());
+            map.Team_T = jTeam_T.ConvertToType(new TeamModel());
+
+            return map;
+        }
+
+        private RoundModel ProcessRound(JObject jRound)
+        {
+            return jRound.ConvertToType(new RoundModel());
+        }
+
+        private PlayerModel ProcessPlayer(JObject jPlayer)
+        {
+            JObject jState = jPlayer["state"] as JObject;
+            JObject jMatch_stats = jPlayer["match_stats"] as JObject;
+            JObject jWeapons = jPlayer["weapons"] as JObject;
+
+            PlayerModel player = jPlayer.ConvertToType(new PlayerModel());
+            player.State = jState.ConvertToType(new StateModel());
+            player.Match_Stats = jMatch_stats.ConvertToType(new Match_StatsModel());
+
+            List<WeaponModel> weapons = new List<WeaponModel>();
+
+            for (int weaponNumber = 0; weaponNumber <= jWeapons.Count - 1; weaponNumber++)
             {
-                PropertyInfo gameState_Property = _gamestate.Provider.GetType().GetProperty(provider_Property.Name);
-
-                if (gameState_Property is null)
-                    continue;
-
-                gameState_Property.SetValue(_gamestate.Provider, provider_Property.GetValue(provider));
-            }
-        }
-
-        private MapModel ProcessMap()
-        {
-            JObject map = JObject.Parse(_json)["map"] as JObject;
-            return map?.ToObject<MapModel>() ?? new MapModel();
-        }
-
-        private RoundModel ProcessRound()
-        {
-            JObject round = JObject.Parse(_json)["round"] as JObject;
-            return round?.ToObject<RoundModel>() ?? new RoundModel();
-        }
-
-        private PlayerModel ProcessPlayer()
-        {
-            JObject player = JObject.Parse(_json)["player"] as JObject;
-            return player?.ToObject<PlayerModel>() ?? new PlayerModel();
-        }
-
-        private Phase_CountdownsModel ProcessPreviously()
-        {
-            JObject player = JObject.Parse(_json)["phase_countdowns"] as JObject;
-            return player?.ToObject<Phase_CountdownsModel>() ?? new Phase_CountdownsModel();
-        }
-
-        private AllPlayersModel ProcessAllplayers()
-        {
-            AllPlayersModel allPlayers = new AllPlayersModel();
-            JObject allPlayersObjects = JObject.Parse(_json)["allplayers"] as JObject;
-            List<JToken> jTokenList = allPlayersObjects?.Values().ToList() ?? new List<JToken>();
-
-            foreach (JToken jToken in jTokenList)
-            {
-                PlayerModel playerModel = jToken.ToObject<PlayerModel>();
-                playerModel.SteamId = jToken.Path.Split(".")[1];
-                ((List<PlayerModel>)allPlayers.Players).Add(playerModel);
+                JObject jWeapon = jWeapons[$"weapon_{weaponNumber}"] as JObject;
+                WeaponModel weapon = jWeapon.ToObject<WeaponModel>();
+                weapons.Add(weapon);
             }
 
-            return allPlayers;
+            player.Weapons = weapons;
+
+            return player;
         }
+
+        private Phase_CountdownsModel ProcessPreviously(JObject jPreviousy)
+        {
+            return jPreviousy.ConvertToType(new Phase_CountdownsModel());
+        }
+
+        //private AllPlayersModel ProcessAllplayers(JObject jAllPlayers)
+        //{
+        //    AllPlayersModel allPlayers = new AllPlayersModel();
+        //    JObject allPlayersObjects = JObject.Parse(_json)["allplayers"] as JObject;
+        //    List<JToken> jTokenList = allPlayersObjects?.Values().ToList() ?? new List<JToken>();
+
+        //    foreach (JToken jToken in jTokenList)
+        //    {
+        //        PlayerModel playerModel = jToken.ToObject<PlayerModel>();
+        //        playerModel.SteamId = jToken.Path.Split(".")[1];
+        //        ((List<PlayerModel>)allPlayers.Players).Add(playerModel);
+        //    }
+
+        //    return allPlayers;
+        //}
     }
 }
