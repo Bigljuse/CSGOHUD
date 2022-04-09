@@ -2,14 +2,14 @@
 {
     public sealed class ProviderModel
     {
-        private string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
-        private int AppId { get; set; } = 0;
+        public int AppId { get; set; } = 0;
 
-        private int Version { get; set; } = 0;
+        public int Version { get; set; } = 0;
 
-        private string SteamId { get; set; } = string.Empty;
+        public string SteamId { get; set; } = string.Empty;
 
-        private int TimeStamp { get; set; } = 0;
+        public int TimeStamp { get; set; } = 0;
     }
 }

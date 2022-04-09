@@ -20,7 +20,5 @@ namespace CSGOHUD.Models
         public BombModel Bomb { get; set; } = new BombModel();
 
         public PreviouslyModel Previously { get; set; } = new PreviouslyModel();
-
-        public AuthModel Auth { get; set; } = new AuthModel();
     }
 }
