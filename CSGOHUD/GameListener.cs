@@ -1,17 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Threading;
-using System.Linq;
-
-using Newtonsoft.Json.Linq;
-
-using CSGOHUD.Models;
+﻿using CSGOHUD.Models;
 using CSGOHUD.Models.Map;
 using CSGOHUD.Models.Player;
-using System.Collections.Generic;
-using System.Reflection;
 using CSGOHUD.Models.Player.Components;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading;
 
 namespace CSGOHUD
 {
@@ -70,7 +67,7 @@ namespace CSGOHUD
 
         private void ProcessGameState()
         {
-            _jString = JObject.Parse(_json) as JObject;
+            _jString = JObject.Parse(_json);
 
             if (_jString["provider"] != null)
                 _gamestate.Provider = ProcessProvider(_jString["provider"] as JObject);
@@ -84,8 +81,8 @@ namespace CSGOHUD
             if (_jString["player"] != null)
                 _gamestate.Player = ProcessPlayer(_jString["player"] as JObject);
 
-            //if (_jString["allplayers"] != null)
-            //    _gamestate.AllPlayers = ProcessAllplayers();
+            if (_jString["allplayers"] != null)
+                _gamestate.AllPlayers = ProcessAllplayers(_jString["allplayers"] as JObject);
 
             if (_jString["phase_countdowns"] != null)
                 _gamestate.Phase_Countdowns = ProcessPreviously(_jString["phase_countdowns"] as JObject);
@@ -151,20 +148,19 @@ namespace CSGOHUD
             return jPreviousy.ConvertToType(new Phase_CountdownsModel());
         }
 
-        //private AllPlayersModel ProcessAllplayers(JObject jAllPlayers)
-        //{
-        //    AllPlayersModel allPlayers = new AllPlayersModel();
-        //    JObject allPlayersObjects = JObject.Parse(_json)["allplayers"] as JObject;
-        //    List<JToken> jTokenList = allPlayersObjects?.Values().ToList() ?? new List<JToken>();
+        private AllPlayersModel ProcessAllplayers(JObject jAllPlayers)
+        {
+            List<JToken> jChildren = jAllPlayers.Children().ToList();
+            List<PlayerModel> jPlayers = new List<PlayerModel>();
 
-        //    foreach (JToken jToken in jTokenList)
-        //    {
-        //        PlayerModel playerModel = jToken.ToObject<PlayerModel>();
-        //        playerModel.SteamId = jToken.Path.Split(".")[1];
-        //        ((List<PlayerModel>)allPlayers.Players).Add(playerModel);
-        //    }
+            foreach (JToken jPlayer in jChildren)
+            {
+                var iii = jPlayer.First.ToString();
+                JObject jplayer = JObject.Parse(iii);
+                jPlayers.Add(ProcessPlayer(jplayer));
+            }
 
-        //    return allPlayers;
-        //}
+            return new AllPlayersModel() { Players = jPlayers };
+        }
     }
 }

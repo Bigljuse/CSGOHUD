@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSGOHUD"
-        xmlns:control="clr-namespace:CSGOHUD.Controls"
+        xmlns:panels_Left="clr-namespace:CSGOHUD.Controls.LeftSided"
+        xmlns:panels_Right="clr-namespace:CSGOHUD.Controls.RightSided"
+        xmlns:panel_Middle="clr-namespace:CSGOHUD.Controls.Middle"
         mc:Ignorable="d"        
         AllowsTransparency="True"
         Background="Transparent"
@@ -14,82 +16,47 @@
         Title="Окно интерфейса"
         WindowStyle="None"
         WindowState="Maximized"
-        Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
     <Grid>
-        <control:TeamStatistics x:Name="TeamStatistics_Menu"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Top"/>
+        <StackPanel x:Name="StackPanel_RightSide"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,35,20">
+            <panels_Right:Player_Panel_Right x:Name="Panel_Right_6"
+                                           Source="Images/Man.png"/>
+            <panels_Right:Player_Panel_Right x:Name="Panel_Right_7"
+                                           Source="Images/Man.png"/>
+            <panels_Right:Player_Panel_Right x:Name="Panel_Right_8"
+                                           Source="Images/Man.png"/>
+            <panels_Right:Player_Panel_Right x:Name="Panel_Right_9"
+                                           Source="Images/Man.png"/>
+            <panels_Right:Player_Panel_Right x:Name="Panel_Right_0"
+                                           Source="Images/Man.png"/>
+        </StackPanel>
 
-        <Grid HorizontalAlignment="Left"
-              VerticalAlignment="Bottom"
-              Margin="0,0,0,165">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+        <panel_Middle:Player_Panel_Middle x:Name="Panel_Middle"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Visibility="Visible"
+                                          Show="True"
+                                          Source="pack://application:,,,/Images/T-CT.jpg"/>
 
-            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player1"
-                                          PlayerNumber="1"
-                                          Money="1000"
-                                          Grid.Row="0">
-            </control:PlayerStatisticsLeft>
-            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player2"
-                                          PlayerNumber="2"
-                                          Grid.Row="1">
-            </control:PlayerStatisticsLeft>
-            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player3"
-                                          PlayerNumber="3"
-                                          Grid.Row="2">
-            </control:PlayerStatisticsLeft>
-            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player4"
-                                          PlayerNumber="4"
-                                          Grid.Row="3">
-            </control:PlayerStatisticsLeft>
-            <control:PlayerStatisticsLeft x:Name="PlayerStatistics_T_player5"
-                                          PlayerNumber="5"
-                                          Grid.Row="4">
-            </control:PlayerStatisticsLeft>
-        </Grid>
-
-        <Grid HorizontalAlignment="Right"
-              VerticalAlignment="Bottom"
-              Margin="0,0,0,165">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player1"
-                                           PlayerNumber="6"
-                                           Grid.Row="0">
-            </control:PlayerStatisticsRight>
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player2"
-                                           PlayerNumber="7"
-                                           Grid.Row="1">
-            </control:PlayerStatisticsRight>
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player3"                                           
-                                           PlayerNumber="8"
-                                           Grid.Row="2">
-            </control:PlayerStatisticsRight>
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player4"
-                                           PlayerNumber="9"
-                                           Grid.Row="3">
-            </control:PlayerStatisticsRight>
-            <control:PlayerStatisticsRight x:Name="PlayerStatistics_CT_player5"
-                                           PlayerNumber="0"
-                                           Grid.Row="4">
-            </control:PlayerStatisticsRight>
-        </Grid>
-
-        <control:PlayerViewer x:Name="PlayerViewer"
-                              HorizontalAlignment="Center" 
-                              VerticalAlignment="Bottom"
-                              Margin="0,0,0,165"/>
+        <StackPanel x:Name="StackPanel_LeftSide"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="35,0,0,20">
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_1"
+                                           Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_2"
+                                           Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_3"
+                                           Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_4"
+                                           Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_5"
+                                           Source="Images/Man.png"/>
+        </StackPanel>
     </Grid>
 </Window>
