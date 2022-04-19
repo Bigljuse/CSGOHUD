@@ -1,0 +1,220 @@
+﻿<UserControl x:Class="CSGOHUD.Controls.Middle.Player_Panel_Middle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSGOHUD.Controls.Middle"
+             mc:Ignorable="d" 
+             Height="220"
+             Width="630"
+             Name="Panel_Middle"
+             FontFamily="Arial Black"
+             Foreground="White"
+             FontSize="19"
+             Loaded="Panel_Middle_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="55" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="1"
+                       Grid.RowSpan="3"
+                       Grid.ColumnSpan="3"
+                       Fill="#FF020239">
+        </Rectangle>
+        
+        <Rectangle Grid.Row="2"
+                   Grid.ColumnSpan="3"
+                   Fill="{Binding ElementName=Panel_Middle, Path=TeamColor}">
+        </Rectangle>
+
+        <Border x:Name="Border_Image"
+                Grid.Column="1"
+                Grid.RowSpan="3"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                BorderThickness="3"                
+                BorderBrush="{Binding ElementName=Panel_Middle, Path=TeamColor}">
+            <Image x:Name="Image_Player"
+                   Stretch="Fill"
+                   Source="{Binding ElementName=Panel_Middle, Path=Source}">
+            </Image>
+        </Border>
+
+        <TextBlock x:Name="TextBlock_NickName"
+                       Grid.Row="1"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,20,0"
+                       Text="{Binding ElementName=Panel_Middle, Path=NickName}">
+        </TextBlock>
+
+        <Grid Grid.Row="1"
+              Grid.Column="2"
+              HorizontalAlignment="Stretch"
+              Margin="0,7,0,7">
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             Margin="20,0,10,0">
+                    <Path Fill ="White"
+                              Stroke="White"
+                              StrokeThickness="5"
+                              Data="M 0,10 L 20,10 M 10,0 L 10,20">
+                    </Path>
+                </Viewbox>
+
+                <TextBlock x:Name="TextBlock_Health"
+                               Grid.Column="1"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center"
+                               Margin="10,0,10,0"
+                               Text="{Binding ElementName=Panel_Middle, Path=Health}">
+                </TextBlock>
+
+                <Grid Grid.Column="2"
+                          Margin="20,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox x:Name="Viewbox_ArmorBody"
+                             Margin="5,0,5,0"
+                             Visibility="Collapsed">
+                        <Path Fill="White"
+                                  Stroke="White" 
+                                  StrokeThickness="0.4"
+                                  Data="{StaticResource ResourceKey=Armor}">
+                            <Path.RenderTransform>
+                                <TranslateTransform X="-2" Y="-2"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Viewbox>
+
+                    <Viewbox x:Name="Viewbox_ArmorHead"
+                             Grid.Column="1"
+                             Margin="5,0,5,0"
+                             Visibility="Collapsed">
+                        <Path Fill="White"
+                              Stroke="White" 
+                              StrokeThickness="0.2"
+                              Data="{StaticResource ResourceKey=Armor_Helmet}">
+                            <Path.RenderTransform>
+                                <TranslateTransform X="-2" Y="-2"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Viewbox>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <StackPanel x:Name="StackPanel_Granades"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Margin="0,5,20,5">
+
+            <Viewbox x:Name="Viewbox_C4"
+                     VerticalAlignment="Stretch"
+                     MaxWidth="20"
+                     Margin="2,0,2,0"
+                     Visibility="Collapsed">
+                <Path Fill="White"
+                      Stroke="Transparent"
+                      Data="{StaticResource ResourceKey=C4}">
+                </Path>
+            </Viewbox>
+
+            <Viewbox x:Name="Viewbox_Grenade_1"
+                     VerticalAlignment="Stretch"
+                     MaxWidth="20"
+                     Margin="2,0,2,0">
+                <Path x:Name="Path_Grenade_1"
+                              Fill="White"
+                              Stroke="Transparent">
+                </Path>
+            </Viewbox>
+
+            <Viewbox x:Name="Viewbox_Grenade_2"
+                     VerticalAlignment="Stretch"
+                     MaxWidth="20"
+                     Margin="2,0,2,0">
+                <Path x:Name="Path_Grenade_2"
+                              Fill="White"
+                              Stroke="Transparent">
+                </Path>
+            </Viewbox>
+
+            <Viewbox x:Name="Viewbox_Grenade_3"
+                     VerticalAlignment="Stretch"
+                     MaxWidth="20"
+                     Margin="2,0,2,0">
+                <Path x:Name="Path_Grenade_3"
+                      Fill="White"
+                      Stroke="Transparent">
+                </Path>
+            </Viewbox>
+
+            <Viewbox x:Name="Viewbox_Grenade_4"
+                     VerticalAlignment="Stretch"
+                     MaxWidth="20"
+                     Margin="2,0,2,0">
+                <Path x:Name="Path_Grenade_4"
+                      Fill="White"
+                      Stroke="Transparent">
+                </Path>
+            </Viewbox>
+            
+        </StackPanel>
+
+        <Grid Grid.Row="2"
+              Grid.Column="2"
+              HorizontalAlignment="Stretch"
+              Margin="0,7,0,7">
+
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Margin="20,0,10,0">
+                    <Path Fill ="White"
+                          Stroke="White"
+                          StrokeThickness="1"
+                          Data="{StaticResource Ammo}">
+                    </Path>
+                </Viewbox>
+
+                <TextBlock x:Name="TextBlock_Ammo"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           Margin="20,0,0,0"
+                           Text="{Binding ElementName=Panel_Middle, Path=Ammo}">
+                </TextBlock>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

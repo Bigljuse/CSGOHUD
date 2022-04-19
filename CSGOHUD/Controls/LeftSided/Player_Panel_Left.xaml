@@ -1,0 +1,374 @@
+﻿<UserControl x:Class="CSGOHUD.Controls.LeftSided.Player_Panel_Left"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSGOHUD.Controls.LeftSided"
+             mc:Ignorable="d" 
+             Name="Panel_Left"        
+             FontFamily="Arial Black"
+             Foreground="White"
+             Background="#BF060682"
+             HorizontalAlignment="Left"
+             Width="360"
+             Height="85"
+             Loaded="Panel_Left_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle x:Name="Rectangle_Selected"
+                   x:FieldModifier="private"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="2"
+                   Visibility="Collapsed">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="1,0"
+                                     EndPoint="0,0">
+                    <GradientStop Color="#00000000" Offset="1.3"/>
+                    <GradientStop Color="{Binding ElementName=Panel_Left, Path=TeamColor}" Offset="0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Grid Grid.ColumnSpan="2"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Right">
+            <Rectangle VerticalAlignment="Stretch"
+                       HorizontalAlignment="Left"
+                       MaxWidth="360"
+                       MinWidth="0"
+                       Width="360">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="1,0">
+                        <GradientStop Color="#FF020239" Offset="0.3"/>
+                        <GradientStop Color="{Binding ElementName=Panel_Left, Path=TeamColor}" Offset="0"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Rectangle x:Name="Rectangle_Background_Health"
+                       x:FieldModifier="private"
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Left"
+                       MaxWidth="360"
+                       MinWidth="0"
+                       Width="360"
+                       Fill="Yellow">
+            </Rectangle>
+
+            <Rectangle x:Name="Rectangle_Foreground_Health"
+                       x:FieldModifier="private"
+                       HorizontalAlignment="Left"
+                       MaxWidth="360"
+                       Width="360"
+                       Fill="{Binding ElementName=Panel_Left, Path=TeamBrush}">
+            </Rectangle>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="75"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TextBlock_Player_Health"
+                       x:FieldModifier="private"
+                       Grid.Column="3"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="16"
+                       Text="{Binding ElementName=Panel_Left, Path=Health}" >
+            </TextBlock>
+
+            <Viewbox x:Name="Viewbox_ArmorBody"
+                     x:FieldModifier="private"
+                     Grid.Column="1"
+                     Visibility="Collapsed">
+                <Path Fill="White"
+                      Stroke="White" 
+                      StrokeThickness="0.4"
+                      Data="{StaticResource ResourceKey=Armor}">
+                    <Path.RenderTransform>
+                        <TranslateTransform X="-2" Y="-2"/>
+                    </Path.RenderTransform>
+                </Path>
+            </Viewbox>
+
+            <Viewbox x:Name="Viewbox_ArmorHead"
+                     x:FieldModifier="private"
+                     Grid.Column="2"
+                     Visibility="Collapsed">
+                <Path Fill="White"
+                      Stroke="White" 
+                      StrokeThickness="0.2"
+                      Data="{StaticResource ResourceKey=Armor_Helmet}">
+                    <Path.RenderTransform>
+                        <TranslateTransform X="-2" Y="-2"/>
+                    </Path.RenderTransform>
+                </Path>
+            </Viewbox>
+
+            <TextBlock x:Name="TextBlock_Player_NickName"
+                       x:FieldModifier="private"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Center"
+                       TextAlignment="Left"
+                       FontFamily="Arial Black"
+                       FontSize="12"
+                       Text="{Binding ElementName=Panel_Left, Path=NickName}" >
+            </TextBlock>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+
+                <Viewbox x:Name="Viewbox_Player_Weapon"
+                         x:FieldModifier="private"
+                         Grid.Column="1"
+                         HorizontalAlignment="Center">
+                    <Path x:Name="Path_Weapon"
+                          Fill="White"
+                          Stroke="Transparent"
+                          RenderTransformOrigin="0.5,0">
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+
+                <StackPanel Grid.ColumnSpan="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock TextAlignment="Right"
+                               FontSize="{Binding ElementName=TextBlock_Player_Money, Path=FontSize}"
+                               Foreground="#FF29DC4E"
+                               Text="$" >
+                    </TextBlock>
+                    <TextBlock x:Name="TextBlock_Player_Money"
+                               x:FieldModifier="private"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               TextAlignment="Right"
+                               FontSize="14"
+                               Foreground="#FF29DC4E"
+                               Text="{Binding ElementName=Panel_Left, Path=Money}" >
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="66"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel x:Name="StackPanel_Granades"
+                            HorizontalAlignment="Right"
+                            Grid.Column="2"
+                            Orientation="Horizontal"
+                            Margin="0,0,25,0">
+
+                    <Viewbox x:Name="Viewbox_Grenade_1"
+                             Height="20"
+                             Width="17">
+                        <Path x:Name="Path_Grenade_1"
+                              Fill="White"
+                              Stroke="Transparent">
+                        </Path>
+                    </Viewbox>
+
+                    <Viewbox x:Name="Viewbox_Grenade_2"
+                             Height="20"
+                             Width="17">
+                        <Path x:Name="Path_Grenade_2"
+                              Fill="White"
+                              Stroke="Transparent">
+                        </Path>
+                    </Viewbox>
+
+                    <Viewbox x:Name="Viewbox_Grenade_3"
+                             Height="20"
+                             Width="17">
+                        <Path x:Name="Path_Grenade_3"
+                              Fill="White"
+                              Stroke="Transparent">
+                        </Path>
+                    </Viewbox>
+
+                    <Viewbox x:Name="Viewbox_Grenade_4"
+                             Height="20"
+                             Width="17">
+                        <Path x:Name="Path_Grenade_4"
+                              Fill="White"
+                              Stroke="Transparent">
+                        </Path>
+                    </Viewbox>
+                </StackPanel>
+
+                <Viewbox x:Name="Viewbox_Defuzer"
+                         Grid.Column="1"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Stretch"
+                         Width="20"
+                         Height="20"
+                         Margin="0,0,10,0"
+                         Visibility="Collapsed">
+                    <Path Fill="White"
+                          Stroke="Transparent"
+                          Data="{StaticResource ResourceKey=Defuzer}">
+                    </Path>
+                </Viewbox>
+                <Viewbox x:Name="Viewbox_C4"
+                         Grid.Column="1"
+                         HorizontalAlignment="Right"
+                         VerticalAlignment="Stretch"
+                         Width="20"
+                         Height="20"
+                         Margin="0,0,10,0"
+                         Visibility="Collapsed">
+                    <Path Fill="White"
+                          Stroke="Transparent"
+                          Data="{StaticResource ResourceKey=C4}">
+                    </Path>
+                </Viewbox>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="Grid_KillsStreak"
+                          Grid.Column="2"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Width="25"
+                          Height="25"
+                          Visibility="Collapsed">
+                        <Rectangle RadiusX="20"
+                                   RadiusY="20"
+                                   Fill="Black">
+                        </Rectangle>
+
+                        <TextBlock x:Name="TextBlock_KillsStreak"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="2,0,2,0"
+                                   TextAlignment="Left"
+                                   FontSize="16"
+                                   Text="{Binding ElementName=Panel_Left, Path=KillsStreak}">
+                        </TextBlock>
+                    </Grid>
+
+                    <TextBlock x:Name="TextBlock_Player_Kills"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Margin="2,0,2,0"
+                               TextAlignment="Left"
+                               FontSize="16"
+                               Text="{Binding ElementName=Panel_Left, Path=Kills}">
+                    </TextBlock>
+
+                    <Image VerticalAlignment="Center"
+                           Height="15"
+                           Source="/Images/CrossScope.png">
+                    </Image>
+                </Grid>
+
+                <Grid Grid.Column="1"
+                      Margin="5,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image VerticalAlignment="Center"
+                           Height="15" 
+                           Source="/Images/Death.png">
+                    </Image>
+
+                    <TextBlock x:Name="TextBlock_DeathsCount"
+                               Grid.Column="1"
+                               HorizontalAlignment="Left"
+                               Margin="2,0,0,0"
+                               VerticalAlignment="Center"
+                               TextAlignment="Left"
+                               FontSize="16"
+                               Text="{Binding ElementName=Panel_Left, Path=Deaths}">
+                    </TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Image x:Name="Image_HoverSelection"
+               x:FieldModifier="private"
+               Grid.RowSpan="2" 
+               Visibility="Hidden"
+               Source="/Images/Selected.png">
+        </Image>
+
+        <Image x:Name="Image_PlayerImage"
+               x:FieldModifier="private"
+               Grid.RowSpan="2"
+               Stretch="Fill"
+               Source="{Binding ElementName=Panel_Left, Path=Source}">
+        </Image>
+
+        <Image x:Name="Image_Smoked"
+               x:FieldModifier="private"
+               Grid.RowSpan="2" 
+               Opacity="0"
+               Source="/Images/Smoke.png">
+        </Image>
+
+        <Image x:Name="Image_Flashed"
+               x:FieldModifier="private"
+               Grid.RowSpan="2" 
+               Opacity="0"
+               Source="/Images/Flash.png">
+        </Image>
+
+        <Image x:Name="Image_HoverDamage"
+               x:FieldModifier="private"
+               Grid.RowSpan="2" 
+               Opacity="0"
+               Source="/Images/Hit.png">
+        </Image>
+
+        <TextBlock x:Name="TextBlock_HitDamage"
+                   x:FieldModifier="private"
+                   Grid.RowSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="0,15,0,0"
+                   FontSize="22"
+                   Opacity="0"
+                   Text="0">
+        </TextBlock>
+    </Grid>
+</UserControl>
