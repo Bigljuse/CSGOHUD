@@ -1,5 +1,4 @@
-﻿using CSGOHUD.Models.Enums;
-using CSGOHUD.Models.Player.Components;
+﻿using CSGOHUD.Models.Player.Components;
 using System.Collections.Generic;
 
 namespace CSGOHUD.Models.Player
@@ -12,7 +11,7 @@ namespace CSGOHUD.Models.Player
 
         public string SteamId { get; set; } = string.Empty;
 
-        public int Observer_slot { get; set; } = 0;
+        public int Observer_slot { get; set; } = -1;
 
         public string Team { get; set; } = string.Empty;
 

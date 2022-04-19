@@ -1,6 +1,6 @@
 ﻿namespace CSGOHUD.Models.Enums
 {
-    public enum TeamEnum
+    public enum PlayerTeam
     {
         None,
         T,

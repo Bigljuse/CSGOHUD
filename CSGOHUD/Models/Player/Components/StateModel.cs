@@ -12,6 +12,8 @@
 
         public int Smoked { get; set; } = 0;
 
+        public bool defusekit { get; set; } = false;
+
         public int Burning { get; set; } = 0;
 
         public int Money { get; set; } = 0;
