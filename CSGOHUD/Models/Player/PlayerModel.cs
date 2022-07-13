@@ -3,9 +3,26 @@ using System.Collections.Generic;
 
 namespace CSGOHUD.Models.Player
 {
-    public sealed class PlayerModel
+    public sealed partial class PlayerModel
     {
-        public string Name { get; set; } = string.Empty;
+        public bool ActivityChanged { get; private set; } = false;
+        public bool NameChanged { get; private set; } = false;
+
+        private string _name = string.Empty;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (_name == value)
+                    NameChanged = false;
+                else
+                {
+                    NameChanged = true;
+                    _name = value;
+                }
+            }
+        }
 
         public string Clan { get; set; } = string.Empty;
 
@@ -15,7 +32,21 @@ namespace CSGOHUD.Models.Player
 
         public string Team { get; set; } = string.Empty;
 
-        public string Activity { get; set; } = string.Empty;
+        private string _activity = string.Empty;
+        public string Activity
+        {
+            get { return _activity; }
+            set
+            {
+                if (_activity == value)
+                    ActivityChanged = false;
+                else
+                {
+                    ActivityChanged = true;
+                    _activity = value;
+                }
+            }
+        }
 
         public StateModel State { get; set; } = new StateModel();
 

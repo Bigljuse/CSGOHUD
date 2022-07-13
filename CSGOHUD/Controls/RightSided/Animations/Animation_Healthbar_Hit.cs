@@ -80,7 +80,7 @@ namespace CSGOHUD.Controls.RightSided
                 Rectangle_Foreground_Health.BeginAnimation(Rectangle.WidthProperty, finishingAnimation, HandoffBehavior.Compose);
                 return;
             }
-                        
+
             Rectangle_Foreground_Health.BeginAnimation(Rectangle.WidthProperty, Animation_Healthbar_Foreground(damage), HandoffBehavior.Compose);
         }
     }

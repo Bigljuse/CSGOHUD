@@ -1,8 +1,6 @@
 ﻿using CSGOHUD.Models.Enums;
-using System;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace CSGOHUD.Controls.Middle
 {

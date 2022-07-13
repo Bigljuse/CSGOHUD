@@ -1,5 +1,6 @@
 ﻿using CSGOHUD.Models.Map;
 using CSGOHUD.Models.Player;
+using System.Collections.Generic;
 
 namespace CSGOHUD.Models
 {
@@ -13,7 +14,7 @@ namespace CSGOHUD.Models
 
         public PlayerModel Player { get; set; } = new PlayerModel();
 
-        public AllPlayersModel AllPlayers { get; set; } = new AllPlayersModel();
+        public List<PlayerModel> Players { get; set; } = new List<PlayerModel>();
 
         public Phase_CountdownsModel Phase_Countdowns { get; set; } = new Phase_CountdownsModel();
 

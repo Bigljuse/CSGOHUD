@@ -2,13 +2,30 @@
 {
     public sealed class MapModel
     {
+        public bool RoundChanged { get; private set; } = true;
+
         public string Mode { get; set; } = string.Empty;
 
         public string Name { get; set; } = string.Empty;
 
         public string Phase { get; set; } = string.Empty;
 
-        public int Round { get; set; } = 0;
+        private int _round = -1;
+
+        public int Round
+        {
+            get { return _round; }
+            set
+            {
+                if (_round == value)
+                    RoundChanged = false;
+                else
+                {
+                    RoundChanged = true;
+                    _round = value;
+                }
+            }
+        }
 
         public TeamModel Team_CT { get; set; } = new TeamModel();
 

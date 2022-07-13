@@ -4,6 +4,6 @@
     {
         public string Phase { get; set; } = string.Empty;
 
-        public string Phase_Ends_In { get; set; } = string.Empty;
+        public double Phase_Ends_In { get; set; } = 0;
     }
 }

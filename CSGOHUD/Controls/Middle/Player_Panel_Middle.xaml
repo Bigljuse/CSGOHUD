@@ -184,6 +184,15 @@
             
         </StackPanel>
 
+        <TextBlock x:Name="TextBlock_NoUtility"
+                   Grid.Row="2"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="0,0,20,0"
+                   Visibility="Visible"
+                   Text="No utility">            
+        </TextBlock>
+
         <Grid Grid.Row="2"
               Grid.Column="2"
               HorizontalAlignment="Stretch"

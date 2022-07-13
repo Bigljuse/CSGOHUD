@@ -122,6 +122,7 @@
 
             <TextBlock x:Name="TextBlock_Player_NickName"
                        x:FieldModifier="private"
+                       Grid.ColumnSpan="4"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Center"
                        TextAlignment="Left"

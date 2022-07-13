@@ -103,6 +103,8 @@
 
   <ItemGroup>
     <Folder Include="Controls\Middle\" />
+    <Folder Include="Controls\TopMenu\" />
+    <Folder Include="Models\Extensions\" />
   </ItemGroup>
 
 </Project>
