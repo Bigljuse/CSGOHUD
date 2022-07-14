@@ -23,9 +23,9 @@
     <Grid>
         <panel_Top:Game_Panel_Top x:Name="TopPanel"
                                   HorizontalAlignment="Center"
-                                  VerticalAlignment="Top">            
+                                  VerticalAlignment="Top">
         </panel_Top:Game_Panel_Top>
-        
+
         <StackPanel x:Name="StackPanel_RightSide"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
@@ -51,17 +51,17 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     Margin="35,0,0,20">
-            <panels_Left:Player_Panel_Left x:Name="Panel_Left_1"
-                                           Source="Images/Man.png"
-                                           />
-            <panels_Left:Player_Panel_Left x:Name="Panel_Left_2"
-                                           Source="Images/Man.png"/>
-            <panels_Left:Player_Panel_Left x:Name="Panel_Left_3"
-                                           Source="Images/Man.png"/>
-            <panels_Left:Player_Panel_Left x:Name="Panel_Left_4"
-                                           Source="Images/Man.png"/>
-            <panels_Left:Player_Panel_Left x:Name="Panel_Left_5"
-                                           Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_1" Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_2" Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_3" Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_4" Source="Images/Man.png"/>
+            <panels_Left:Player_Panel_Left x:Name="Panel_Left_5" Source="Images/Man.png"/>
         </StackPanel>
+
+        <Grid Margin="500,300,500,300" Background="Black">
+            <ScrollViewer>
+                <TextBox x:Name="texts" Foreground="Black" FontSize="20" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

@@ -1,13 +1,13 @@
-﻿using CSGOHUD.Controls.LeftSided;
+﻿using CSGO;
+using CSGOHUD.Controls.LeftSided;
 using CSGOHUD.Controls.RightSided;
-using CSGOHUD.Models;
-using CSGOHUD.Models.Enums;
-using CSGOHUD.Models.Player;
-using CSGOHUD.Models.Player.Components;
+using CSGO.Models;
+using CSGO.Models.Enums;
+using CSGO.Models.Player;
+using CSGO.Models.Player.Components;
 using System;
 using System.Collections.Generic;
 using System.Windows;
-
 using Settings = CSGOHUD.Properties.Settings;
 
 namespace CSGOHUD
@@ -26,11 +26,21 @@ namespace CSGOHUD
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GameListener gameListener = new GameListener();
-            gameListener.GameStateProcessedEvent += UpdateUI;
+            Listener gameListener = new Listener("127.0.0.1", 3000);
+
+            gameListener.MessageRecieved += MessageRecieved;
             gameListener.Start();
 
             StartOvershowing(1000);
+        }
+
+        private void MessageRecieved(string jsonMessage)
+        {
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                texts.Text = jsonMessage;
+                UpdateUI(GameProcessor.ProcessGameState(jsonMessage));
+            }));
         }
 
         private void UpdateMiddlePanel(PlayerModel? player)
@@ -100,28 +110,27 @@ namespace CSGOHUD
 
         private void UpdateUI(GameStateModel gameState)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            //texts.Text = gameState.message;
+
+            UpdateTopPanel(gameState);
+
+            if (gameState.Player.NameChanged == true)
+                UpdateMiddlePanel(gameState.Player);
+
+            if (gameState.Player?.Activity == "playing")
             {
-                UpdateTopPanel(gameState);
+                UpdatePlayers(gameState.Players);
+                UpdateMiddlePanel(gameState.Player);
+            }
 
-                if (gameState.Player.NameChanged == true)
-                    UpdateMiddlePanel(gameState.Player);
+            if (gameState.Player?.ActivityChanged == false)
+                return;
 
-                if (gameState.Player?.Activity == "playing")
-                {
-                    UpdatePlayers(gameState.Players);
-                    UpdateMiddlePanel(gameState.Player);
-                }
-
-                if (gameState.Player?.ActivityChanged == false)
-                    return;
-
-                switch (gameState.Player?.Activity)
-                {
-                    case "menu": UpdateMiddlePanel(null); HideSidePanels(); break;
-                    case "playing": UpdateMiddlePanel(gameState.Player); break;
-                }
-            }));
+            switch (gameState.Player?.Activity)
+            {
+                case "menu": UpdateMiddlePanel(null); HideSidePanels(); break;
+                case "playing": UpdateMiddlePanel(gameState.Player); break;
+            }
         }
 
         private void UpdatePlayers(List<PlayerModel> players)

@@ -104,7 +104,10 @@
   <ItemGroup>
     <Folder Include="Controls\Middle\" />
     <Folder Include="Controls\TopMenu\" />
-    <Folder Include="Models\Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Broadcast manager\CSGO\CSGO\CSGO.csproj" />
   </ItemGroup>
 
 </Project>

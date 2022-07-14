@@ -1,4 +1,4 @@
-﻿using CSGOHUD.Models.Enums;
+﻿using CSGO.Models.Enums;
 using System.Windows;
 using System.Windows.Media;
 
