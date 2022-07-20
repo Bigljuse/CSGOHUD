@@ -15,7 +15,7 @@ namespace CSGOHUD.Controls.TopMenu
     public partial class Game_Panel_Top : UserControl
     {
         private Timer _timer_Round = new Timer() { Interval = 1000 };
-        private int _timer = 0;
+        private double _timer = 0;
         private TimerType _current_Timer = TimerType.Timer;
 
         private enum TimerType
@@ -29,7 +29,7 @@ namespace CSGOHUD.Controls.TopMenu
             InitializeComponent();
         }
 
-        public void Start_Timer(int seconds)
+        public void Start_Timer(double seconds)
         {
             _timer = seconds;
             Show_Timer(TimerType.Timer);
@@ -129,10 +129,10 @@ namespace CSGOHUD.Controls.TopMenu
             }
         }
 
-        public void Set_Timer_Text(int seconds)
+        public void Set_Timer_Text(double seconds)
         {
-            int sec = seconds % 60;
-            int min = seconds / 60;
+            double sec = seconds % 60;
+            double min = seconds / 60;
 
             if (sec > 9)
                 TextBlock_Timer.Text = $"{min}:{sec}";
