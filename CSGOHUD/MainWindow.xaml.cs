@@ -1,8 +1,6 @@
 ﻿using CSGO;
 using CSGO.Models;
-using CSGO.Models.Enums;
 using CSGO.Models.Player;
-using CSGO.Models.Player.Components;
 using CSGOHUD.Controls.LeftSided;
 using CSGOHUD.Controls.RightSided;
 using System;
@@ -121,7 +119,7 @@ namespace CSGOHUD
 
             if (gameState.Player?.Activity == "playing")
             {
-                UpdatePlayers(gameState.Players);
+                UpdatePlayers(gameState.AllPlayers);
                 UpdateMiddlePanel(gameState.Player);
             }
 
@@ -184,7 +182,7 @@ namespace CSGOHUD
             if (panel.ArmorHead != player.State.Helmet)
                 panel.ArmorHead = player.State.Helmet;
 
-            Weapon topWeapon = player.GetTopWeapon();
+            WeaponName topWeapon = player.GetTopWeapon();
 
             if (panel.Weapon != topWeapon)
                 panel.Weapon = topWeapon;
