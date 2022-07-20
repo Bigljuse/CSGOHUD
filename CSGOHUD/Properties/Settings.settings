@@ -5,10 +5,10 @@
     <Setting Name="HTTPAdress" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://localhost:3000/</Value>
     </Setting>
-    <Setting Name="BombTimerMax" Type="System.Int32" Scope="User">
+    <Setting Name="BombTimerMax" Type="System.Double" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
-    <Setting Name="BombTimerStart" Type="System.Int32" Scope="User">
+    <Setting Name="BombTimerStart" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

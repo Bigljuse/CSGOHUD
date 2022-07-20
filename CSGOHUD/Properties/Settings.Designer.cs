@@ -38,9 +38,9 @@ namespace CSGOHUD.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("40")]
-        public int BombTimerMax {
+        public double BombTimerMax {
             get {
-                return ((int)(this["BombTimerMax"]));
+                return ((double)(this["BombTimerMax"]));
             }
             set {
                 this["BombTimerMax"] = value;
@@ -50,9 +50,9 @@ namespace CSGOHUD.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int BombTimerStart {
+        public double BombTimerStart {
             get {
-                return ((int)(this["BombTimerStart"]));
+                return ((double)(this["BombTimerStart"]));
             }
             set {
                 this["BombTimerStart"] = value;
