@@ -78,33 +78,33 @@ namespace CSGOHUD
 
         private void UpdateTopPanel(GameStateModel gameState)
         {
-         //  if (gameState.Bomb.StateChanged == true)
-         //  {
-         //      if (gameState.Bomb.State == "planted")
-         //      {
-         //          Settings.Default.BombTimerStart = Settings.Default.BombTimerMax - Convert.ToDouble(gameState.Bomb.countdown.Replace('.',','));
-         //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.planted;
-         //      }
-         //      if (gameState.Bomb.State == "defused")
-         //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.defused;
-         //
-         //      if (gameState.Round.Bomb == "exploded")
-         //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.exploded;
-         //  }
-         //  else if (gameState.Map.RoundChanged == true || gameState.Round.PhaseChanged == true)
-         //  {
-         //      TopPanel.LeftScore = gameState.Map.Team_CT.Score;
-         //      TopPanel.RightScore = gameState.Map.Team_T.Score;
-         //
-         //      if (gameState.Bomb.State == "planted")
-         //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.planted;
-         //      else if (gameState.Bomb.State == "defused")
-         //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.defused;
-         //      else
-         //      {
-         //          TopPanel.Start_Timer(Convert.ToDouble(gameState.Phase_Countdowns.Phase_Ends_In.Replace('.', ',')));
-         //      }
-         //  }
+            //  if (gameState.Bomb.StateChanged == true)
+            //  {
+            //      if (gameState.Bomb.State == "planted")
+            //      {
+            //          Settings.Default.BombTimerStart = Settings.Default.BombTimerMax - Convert.ToDouble(gameState.Bomb.countdown.Replace('.',','));
+            //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.planted;
+            //      }
+            //      if (gameState.Bomb.State == "defused")
+            //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.defused;
+            //
+            //      if (gameState.Round.Bomb == "exploded")
+            //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.exploded;
+            //  }
+            //  else if (gameState.Map.RoundChanged == true || gameState.Round.PhaseChanged == true)
+            //  {
+            //      TopPanel.LeftScore = gameState.Map.Team_CT.Score;
+            //      TopPanel.RightScore = gameState.Map.Team_T.Score;
+            //
+            //      if (gameState.Bomb.State == "planted")
+            //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.planted;
+            //      else if (gameState.Bomb.State == "defused")
+            //          TopPanel.Bomb = Controls.TopMenu.Enums.BombState.defused;
+            //      else
+            //      {
+            //          TopPanel.Start_Timer(Convert.ToDouble(gameState.Phase_Countdowns.Phase_Ends_In.Replace('.', ',')));
+            //      }
+            //  }
         }
 
         private void UpdateUI(GameStateModel gameState)
@@ -204,8 +204,7 @@ namespace CSGOHUD
             if (panel.Defuzer != player.State.defusekit)
                 panel.Defuzer = player.State.defusekit;
 
-            if (panel.C4 != (player.Weapons.Values.Where(x => x.Type == "C4") != null))
-                panel.C4 = player.Weapons.Values.Where(x => x.Type == "C4") != null;
+            panel.C4 = player.Weapons.Values.Where(x => x.Type == "C4").SingleOrDefault() != null;
 
             if (panel.Money != player.State.Money)
                 panel.Money = player.State.Money;
@@ -259,8 +258,7 @@ namespace CSGOHUD
             if (panel.Defuzer != player.State.defusekit)
                 panel.Defuzer = player.State.defusekit;
 
-            if (panel.C4 != (player.Weapons.Values.Where(x => x.Type == "C4") != null))
-                panel.C4 = player.Weapons.Values.Where(x => x.Type == "C4") != null;
+            panel.C4 = player.Weapons.Values.Where(x => x.Type == "C4").SingleOrDefault() != null;
 
             if (panel.Money != player.State.Money)
                 panel.Money = player.State.Money;
