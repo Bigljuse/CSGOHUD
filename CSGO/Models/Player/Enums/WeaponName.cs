@@ -1,0 +1,42 @@
+﻿namespace CSGO.Models.Player
+{
+    public enum WeaponName
+    {
+        None,
+        AK_47,
+        Aug,
+        AWP,
+        Bizon,
+        Cz75,
+        Deagle,
+        Elite,
+        Famas,
+        Fiveseven,
+        Bayonet,
+        G3sg1,
+        Galilar,
+        Glock,
+        Hkp2000,
+        M4a1,
+        M4a1_silencer,
+        M249,
+        Mac10,
+        Mag7,
+        Mp7,
+        Mp9,
+        Negev,
+        Nova,
+        P90,
+        Revolver,
+        Sawedoff,
+        Scar20,
+        Sg556,
+        Ssg08,
+        Taser,
+        Tec9,
+        Ump45,
+        Usp_silencer,
+        Xm1014,
+        P250
+    }
+}
