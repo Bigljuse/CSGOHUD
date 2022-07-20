@@ -1,4 +1,4 @@
-﻿using CSGO.Models.Enums;
+﻿using CSGO.Models.Player;
 using System.Windows;
 using System.Windows.Media;
 
@@ -37,7 +37,7 @@ namespace CSGOHUD.Controls.LeftSided
         public static readonly DependencyProperty ArmorHeadProperty =
             DependencyProperty.Register("ArmorHead", typeof(bool), typeof(Player_Panel_Left), new UIPropertyMetadata(false));
         public static readonly DependencyProperty WeaponProperty =
-            DependencyProperty.Register("Weapon", typeof(Weapon), typeof(Player_Panel_Left), new UIPropertyMetadata(Weapon.None));
+            DependencyProperty.Register("Weapon", typeof(WeaponName), typeof(Player_Panel_Left), new UIPropertyMetadata(WeaponName.None));
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register("Source", typeof(ImageSource), typeof(Player_Panel_Left));
         private static readonly DependencyProperty TeamProperty =
@@ -206,18 +206,18 @@ namespace CSGOHUD.Controls.LeftSided
                 SetValue(ArmorHeadProperty, value);
             }
         }
-        public Weapon Weapon
+        public WeaponName Weapon
         {
             get
             {
                 if (Path_Weapon.Data == null)
-                    return Weapon.None;
+                    return WeaponName.None;
 
-                return (Weapon)GetValue(WeaponProperty);
+                return (WeaponName)GetValue(WeaponProperty);
             }
             set
             {
-                if (value == Weapon.None)
+                if (value == WeaponName.None)
                 {
                     Path_Weapon.Data = null;
                     return;

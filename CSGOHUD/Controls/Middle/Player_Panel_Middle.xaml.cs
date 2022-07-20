@@ -1,4 +1,4 @@
-﻿using CSGO.Models.Enums;
+﻿using CSGO.Models.Player;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +23,7 @@ namespace CSGOHUD.Controls.Middle
             //    Visibility = Visibility.Collapsed;
         }
 
-        public void Grenades_Check(List<Grenade> grenades)
+        public void Grenades_Check(List<GrenadeName> grenades)
         {
             if (grenades.Count == 3)
             {
@@ -59,7 +59,7 @@ namespace CSGOHUD.Controls.Middle
 
             for (int grenadeId = 0; grenadeId < grenades.Count; grenadeId++)
             {
-                Grenade grenade = grenades[grenadeId];
+                GrenadeName grenade = grenades[grenadeId];
                 if (grenadeId == 0)
                 {
                     Viewbox_Grenade_1.Visibility = Visibility.Visible;

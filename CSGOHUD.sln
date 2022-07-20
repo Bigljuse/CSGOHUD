@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSGOHUD", "CSGOHUD\CSGOHUD.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSGO", "..\..\Broadcast manager\CSGO\CSGO\CSGO.csproj", "{9FFF9CB9-D60F-46CC-9330-C92A6131B4CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSGOSender", "CSGOSender\CSGOSender.csproj", "{BE3AEADE-74C3-4B66-BF8F-AE0F98124510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9FFF9CB9-D60F-46CC-9330-C92A6131B4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FFF9CB9-D60F-46CC-9330-C92A6131B4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FFF9CB9-D60F-46CC-9330-C92A6131B4CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3AEADE-74C3-4B66-BF8F-AE0F98124510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3AEADE-74C3-4B66-BF8F-AE0F98124510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3AEADE-74C3-4B66-BF8F-AE0F98124510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3AEADE-74C3-4B66-BF8F-AE0F98124510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
