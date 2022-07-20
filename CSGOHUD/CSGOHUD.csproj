@@ -107,7 +107,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Broadcast manager\CSGO\CSGO\CSGO.csproj" />
+    <ProjectReference Include="..\CSGO\CSGO.csproj" />
   </ItemGroup>
 
 </Project>
