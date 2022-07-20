@@ -58,10 +58,10 @@
             <panels_Left:Player_Panel_Left x:Name="Panel_Left_5" Source="Images/Man.png"/>
         </StackPanel>
 
-        <Grid Margin="500,300,500,300" Background="Black">
+        <!--<Grid Margin="500,300,500,300" Background="Black">
             <ScrollViewer>
                 <TextBox x:Name="texts" Foreground="Black" FontSize="20" TextWrapping="Wrap"/>
             </ScrollViewer>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>
